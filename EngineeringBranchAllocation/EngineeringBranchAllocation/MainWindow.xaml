@@ -1,0 +1,47 @@
+﻿<Controls:MetroWindow x:Class="EngineeringBranchAllocation.MainWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:EngineeringBranchAllocation"
+        Title="MainWindow" Height="700" Width="700" WindowStartupLocation="CenterScreen" DataContext="{Binding Path=FinalAllotmentResults}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            
+        </Grid>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Border BorderThickness="1" BorderBrush="Black">
+                <TextBlock x:Name="txtblkBranchPreference" Width="400" Margin="0,0,10,0"/>
+            </Border>
+            <Button x:Name="btnBranchPreference" Content="Select Branch Preference" Click="OnButtonBranchPreferenceClick" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <DataGrid BorderThickness="5" Grid.Row="1" Height="550" AutoGenerateColumns="True" Width="Auto" LoadingRow="DataGrid_LoadingRow" ItemsSource="{Binding}" x:Name="Allotment" 
+                  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <!--<DataGrid.Columns>
+                <DataGridTextColumn Header="StudentId"  Binding="{Binding StudentId}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="CGPA"  Binding="{Binding CGPA}"/>
+                <DataGridTextColumn Header="Allocated Branch" Binding="{Binding AllottedBranch}" />
+                <DataGridTextColumn Header="Student Caste"  Binding="{Binding StudentCaste}"/>
+                <DataGridTextColumn Header="Student Category" Binding="{Binding StudentCategory}" />
+            </DataGrid.Columns>-->
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridRow}},Path=Header}" />
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+        </DataGrid>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button x:Name="btnGetResults" Click='OnButtonbtnGetResultsClick' Content="Get Results" Margin="10"/>
+            <Button x:Name="btnSaveResults" Click="ObButtonbtnSaveResultsClick" Content="Save Results" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Controls:MetroWindow>
